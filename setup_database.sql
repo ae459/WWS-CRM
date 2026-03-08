@@ -1,11 +1,3 @@
--- Railway note:
--- This script is intended to run against the database selected by your connection.
--- Do not hardcode CREATE DATABASE/USE for managed Railway MySQL instances.
---
--- Local-only optional lines (uncomment if needed):
--- CREATE DATABASE IF NOT EXISTS worldwide_crm;
--- USE worldwide_crm;
-
 CREATE TABLE IF NOT EXISTS users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
