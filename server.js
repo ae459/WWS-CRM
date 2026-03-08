@@ -191,8 +191,14 @@ app.post("/api/travel-inquiry", async (req, res) => {
   }
 });
 
-app.get("/api/travel-inquiry", (req, res) => {
-  return res.json({ count: store.length, items: store });
+app.get("/api/travel-inquiry", async (req, res) => {
+  try {
+    const [rows] = await pool.execute("SELECT * FROM travel_deals LIMIT 200");
+    return res.json({ count: rows.length, items: rows });
+  } catch (error) {
+    console.error("DB Error:", error);
+    return res.status(500).json({ error: "Database error" });
+  }
 });
 
 app.get("/health", (req, res) => {

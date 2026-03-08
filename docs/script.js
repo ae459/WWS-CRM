@@ -2,7 +2,7 @@ const form = document.getElementById("travelForm");
 const message = document.getElementById("message");
 const API_BASE_URL =
 window.API_BASE_URL ||
-(window.location.protocol === "file:" ? "http://localhost:3000" : window.location.origin);
+"https://wws-crm-production.up.railway.app";
 const BACKEND_URL = `${API_BASE_URL.replace(/\/$/, "")}/api/travel-inquiry`;
 
 const fieldIds = [
