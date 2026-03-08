@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WWS Travel Inquiry</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Travel Inquiry Form</h1>
+
+      <form id="travelForm">
+        <label>Name: </label>
+        <input type="text" id="name" required />
+        <p class="field-error" id="nameError"></p>
+
+        <label>Email: </label>
+        <input type="email" id="email" required />
+        <p class="field-error" id="emailError"></p>
+
+        <label>Phone Number: </label>
+        <input type="tel" id="phone" />
+        <p class="field-error" id="phoneError"></p>
+
+        <label>Destination: </label>
+        <input type="text" id="destination" required />
+        <p class="field-error" id="destinationError"></p>
+
+        <label>Travel Start Date *</label>
+        <input type="date" id="travelStartDate" required />
+        <p class="field-error" id="travelStartDateError"></p>
+
+        <label>Travel End Date *</label>
+        <input type="date" id="travelEndDate" required />
+        <p class="field-error" id="travelEndDateError"></p>
+
+        <label>Amount of Travelers *</label>
+        <input type="number" id="numberOfTravelers" min="1" max="20" required />
+        <p class="field-error" id="numberOfTravelersError"></p>
+
+        <label>Budget (approx. total in $)</label>
+        <input type="number" id="budget" min="0" step="0.01" />
+        <p class="field-error" id="budgetError"></p>
+
+        <label>Additional Comments / Notes</label>
+        <textarea id="notes"></textarea>
+        <p class="field-error" id="notesError"></p>
+
+        <button type="submit">Submit Form</button>
+      </form>
+
+      <p id="message"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

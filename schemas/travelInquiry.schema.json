@@ -1,0 +1,52 @@
+{
+  "$id": "https://example.com/travelInquiry.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A representation of a travel inquiry form submission from Task 1 form.",
+  "type": "object",
+  "additionalProperties": false,
+
+    "properties": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "string"
+    },
+    "travelStartDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "travelEndDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "numberOfTravelers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "budget": {
+      "type": "number",
+      "minimum": 0
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+    "required": [
+    "name",
+    "email",
+    "destination",
+    "travelStartDate",
+    "travelEndDate",
+    "numberOfTravelers"
+  ]
+}
+
