@@ -139,13 +139,12 @@ function validate(body) {
 }
 
 const mysql = require("mysql2/promise");
-const connection = await mysql.createConnection({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT
-});
+
+const dbHost = (process.env.MYSQLHOST || process.env.DB_HOST || "mysql-production-70d5.up.railway.app").trim();
+const dbPort = Number.parseInt(process.env.MYSQLPORT || process.env.DB_PORT || "3306", 10);
+const dbUser = (process.env.MYSQLUSER || process.env.DB_USER || "root").trim();
+const dbPassword = process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || "ODuTDNumEIEBbuqlthAruiVzeKqrsOrD";
+const dbName = (process.env.MYSQLDATABASE || process.env.DB_NAME || "railway").trim();
 
 const shouldUseSsl =
   process.env.DB_SSL === 'true' ||
