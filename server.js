@@ -138,15 +138,13 @@ function validate(body) {
   };
 }
 
-const mysql = require('mysql2/promise');
+const mysql = require("mysql2/promise");
 
-const connection = await mysql.createConnection({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT
-});
+const dbHost = (process.env.MYSQLHOST || process.env.DB_HOST || "localhost").trim();
+const dbPort = Number.parseInt(process.env.MYSQLPORT || process.env.DB_PORT || "3306", 10);
+const dbUser = (process.env.MYSQLUSER || process.env.DB_USER || "root").trim();
+const dbPassword = process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || "";
+const dbName = (process.env.MYSQLDATABASE || process.env.DB_NAME || "railway").trim();
 const shouldUseSsl =
   process.env.DB_SSL === 'true' ||
   dbHost.includes('railway.app') ||

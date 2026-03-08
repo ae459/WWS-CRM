@@ -1,6 +1,9 @@
 const form = document.getElementById("travelForm");
 const message = document.getElementById("message");
-const BACKEND_URL = "http://localhost:3000/api/travel-inquiry";
+const API_BASE_URL =
+window.API_BASE_URL ||
+(window.location.protocol === "file:" ? "http://localhost:3000" : window.location.origin);
+const BACKEND_URL = `${API_BASE_URL.replace(/\/$/, "")}/api/travel-inquiry`;
 
 const fieldIds = [
 "name",
