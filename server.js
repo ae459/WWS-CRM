@@ -5,6 +5,20 @@ const path = require("path");
 const app = express();
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  next();
+});
+
+app.use(express.static(path.join(__dirname, "docs")));
+
 const store = [];
 const STORE_PATH = path.join(__dirname, "requests.json");
 
@@ -33,7 +47,7 @@ function isValidDateString(value) {
 function validate(body) {
   const errors = [];
 
-  // Reject extra fields (Task 3: additionalProperties = false)
+  
   const incomingFields = Object.keys(body);
   for (const field of incomingFields) {
     if (!allowedFields.includes(field)) {
@@ -124,23 +138,41 @@ function validate(body) {
   };
 }
 
-function persist(payload) {
-  store.push(payload);
+const mysql = require("mysql2/promise");
+const connection = await mysql.createConnection({
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT
+});
 
-  let current = [];
-  try {
-    if (fs.existsSync(STORE_PATH)) {
-      current = JSON.parse(fs.readFileSync(STORE_PATH, "utf8") || "[]");
-    }
-  } catch {
-    current = [];
-  }
+const shouldUseSsl =
+  process.env.DB_SSL === 'true' ||
+  dbHost.includes('railway.app') ||
+  dbHost.includes('proxy.rlwy.net');
 
-  current.push(payload);
-  fs.writeFileSync(STORE_PATH, JSON.stringify(current, null, 2), "utf8");
+const pool = mysql.createPool({
+  host: dbHost,
+  user: dbUser,
+  password: dbPassword,
+  database: dbName,
+  port: dbPort,
+  ssl: shouldUseSsl ? { rejectUnauthorized: false } : undefined
+});
+
+async function persist(payload) {
+  const [result] = await pool.execute(
+    `INSERT INTO travel_deals (name, email, phone, destination, travelStartDate, travelEndDate, numberOfTravelers, budget, notes, stage) 
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [payload.name, payload.email, payload.phone, payload.destination, 
+     payload.travelStartDate, payload.travelEndDate, payload.numberOfTravelers, 
+     payload.budget, payload.notes, 'Inquiry Received']
+  );
+  return result.insertId;
 }
 
-app.post("/api/travel-inquiry", (req, res) => {
+app.post("/api/travel-inquiry", async (req, res) => {
   const result = validate(req.body);
 
   if (!result.valid) {
@@ -148,22 +180,28 @@ app.post("/api/travel-inquiry", (req, res) => {
   }
 
   const payload = {
-    id: Math.random().toString(16).slice(2) + Date.now().toString(16),
     receivedAt: new Date().toISOString(),
     ...req.body
   };
 
-  console.log("Travel inquiry received:", payload);
-  persist(payload);
-
-  return res.status(200).json({ ok: true, id: payload.id });
+  try {
+    const insertId = await persist(payload);
+    res.json({ ok: true, id: insertId });
+  } catch (error) {
+    console.error("DB Error:", error);
+    res.status(500).json({ error: "Database error" });
+  }
 });
 
 app.get("/api/travel-inquiry", (req, res) => {
   return res.json({ count: store.length, items: store });
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`API running at http://localhost:${PORT}`);
+app.get("/health", (req, res) => {
+  return res.status(200).json({ ok: true });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 API running on port ${PORT}`);
 });
