@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task 2 - Left Sidebar Navigation</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <h2>Travel CRM</h2>
+    <ul>
+      <li>
+        <a href="#" class="nav-link active" data-page="Dashboard">
+          <i class="fas fa-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-page="Leads">
+          <i class="fas fa-user-plus"></i>
+          <span>Leads</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-page="Deals">
+          <i class="fas fa-briefcase"></i>
+          <span>Deals</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-page="Activities">
+          <i class="fas fa-calendar-check"></i>
+          <span>Activities</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-page="Contacts">
+          <i class="fas fa-address-book"></i>
+          <span>Contacts</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-page="Travel Campaigns">
+          <i class="fas fa-plane-departure"></i>
+          <span>Travel Campaigns</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-page="Today's Tasks">
+          <i class="fas fa-list-check"></i>
+          <span>Today's Tasks</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="pageTitle">Dashboard</h1>
+    <p id="pageContent">
+      Welcome to the Dashboard. Click items in the sidebar to simulate routing.
+    </p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
