@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4 - Main Content Tables</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="content">
+    <div class="table-card">
+      <h2>Recent Activities</h2>
+      <table id="activitiesTable">
+        <thead>
+          <tr>
+            <th onclick="sortTable('activitiesTable', 0)">Activity</th>
+            <th onclick="sortTable('activitiesTable', 1)">Lead Name</th>
+            <th onclick="sortTable('activitiesTable', 2)">Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="rowClick('Inquiry Call - Paris Trip')">
+            <td>Inquiry Call - Paris Trip</td>
+            <td>John Smith</td>
+            <td>Mar 10, 2026</td>
+            <td><span class="badge in-progress">In Progress</span></td>
+          </tr>
+          <tr onclick="rowClick('Follow-up - Rome Vacation')">
+            <td>Follow-up - Rome Vacation</td>
+            <td>Maria Lopez</td>
+            <td>Mar 11, 2026</td>
+            <td><span class="badge started">Started</span></td>
+          </tr>
+          <tr onclick="rowClick('Inquiry - Tokyo Tour')">
+            <td>Inquiry - Tokyo Tour</td>
+            <td>Kevin Lee</td>
+            <td>Mar 12, 2026</td>
+            <td><span class="badge in-progress">In Progress</span></td>
+          </tr>
+          <tr onclick="rowClick('Consultation - Dubai Trip')">
+            <td>Consultation - Dubai Trip</td>
+            <td>Aisha Khan</td>
+            <td>Mar 13, 2026</td>
+            <td><span class="badge started">Started</span></td>
+          </tr>
+          <tr onclick="rowClick('Inquiry - Greece Islands')">
+            <td>Inquiry - Greece Islands</td>
+            <td>Chris Brown</td>
+            <td>Mar 14, 2026</td>
+            <td><span class="badge in-progress">In Progress</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-card">
+      <h2>Open Leads</h2>
+      <table id="leadsTable">
+        <thead>
+          <tr>
+            <th onclick="sortTable('leadsTable', 0)">Name</th>
+            <th onclick="sortTable('leadsTable', 1)">Company</th>
+            <th onclick="sortTable('leadsTable', 2)">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="rowClick('Emily Carter')">
+            <td>Emily Carter</td>
+            <td>EuroTrip Inc.</td>
+            <td>emily@eurotrip.com</td>
+          </tr>
+          <tr onclick="rowClick('Daniel Kim')">
+            <td>Daniel Kim</td>
+            <td>Asia Adventures</td>
+            <td>daniel@asia.com</td>
+          </tr>
+          <tr onclick="rowClick('Sarah Johnson')">
+            <td>Sarah Johnson</td>
+            <td>Safari Co.</td>
+            <td>sarah@safari.com</td>
+          </tr>
+          <tr onclick="rowClick('Michael Brown')">
+            <td>Michael Brown</td>
+            <td>Island Getaways</td>
+            <td>michael@island.com</td>
+          </tr>
+          <tr onclick="rowClick('Jessica Lee')">
+            <td>Jessica Lee</td>
+            <td>Luxury Escapes</td>
+            <td>jessica@luxury.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
