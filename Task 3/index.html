@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRM DashBoard</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <div class="container">
+
+            <button id="openModal" class="btn">+ New Travel Campaign</button>
+
+            <div class="card right-panel">
+                <h2>New Lead</h2>
+
+                <form id="leadForm">
+                    <input type="text" placeholder="Name" id="name">
+                    <input type="email" placeholder="Email" id="email">
+                    <input type="text" placeholder="Destination" id="destination">
+                    <input type="text" placeholder="Budget" id="budget">
+
+                    <button type="submit" class="btn">Submit</button>
+                    <p id ="leadSuccess"></p>
+                </form>
+             </div>
+
+        
+
+             <div class="card">
+                <h2>My Tasks</h2>
+                <ul>
+                    <li>Follow up with Lead</li>
+                    <li>Review Inquiry</li>
+                    <li>Send Pricing</li>
+                    <li>Prepare Campaign Report</li>
+                </ul>
+             </div>
+            
+        </div>
+
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="closeModal">&times;</span>
+
+                <h2>New Travel Campaign</h2>
+
+                <form id="campaignForm">
+                    <input type="text" placeholder="Campaign Name" id="campaignName">
+                    <input type="text" placeholder="Destinations" id="campaignDestinations">
+                    <input type="text" placeholder="Budget Range" id="campaignBudget">
+
+                    <button type="submit" class="btn">Create</button>
+                    <p id="campaignSuccess"></p>
+                </form>
+            </div>
+        </div>
+
+        <script src="../validation/validateTravelInquiry.js"></script>
+        <script src="script.js"></script>
+
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
