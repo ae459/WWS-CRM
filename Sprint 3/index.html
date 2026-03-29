@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprint 3 - Combined Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+    <div class="dashboard-container">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <svg class="logo" viewBox="0 0 48 48" role="img" aria-label="Worldwide Solutions Corp logo">
+            <defs>
+              <linearGradient id="brandGradientSprint3" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#1d4ed8"></stop>
+                <stop offset="100%" stop-color="#fb923c"></stop>
+              </linearGradient>
+            </defs>
+            <rect width="48" height="48" rx="14" fill="url(#brandGradientSprint3)"></rect>
+            <path d="M12 16h24l-8.5 8 8.5 8H12l8.5-8L12 16Z" fill="#fff"></path>
+          </svg>
+          <h2>Worldwide<br>Solutions Corp</h2>
+        </div>
+        <ul>
+          <li>
+            <a href="#" class="nav-link active" data-page="Dashboard">
+              <i class="fas fa-chart-pie"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="Leads">
+              <i class="fas fa-user-friends"></i>
+              <span>Leads</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="Deals">
+              <i class="fas fa-handshake"></i>
+              <span>Deals</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="Activities">
+              <i class="fas fa-tasks"></i>
+              <span>Activities</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="Contacts">
+              <i class="fas fa-address-book"></i>
+              <span>Contacts</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="Travel Campaigns">
+              <i class="fas fa-plane-departure"></i>
+              <span>Travel Campaigns</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="Today's Tasks">
+              <i class="fas fa-calendar-check"></i>
+              <span>Today's Tasks</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="main-shell">
+        <header class="main-header">
+            <div class="header-left">
+                <h1>Dashboard Overview</h1>
+            </div>
+            <div class="header-right">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search Paris inquiries, Tokyo bookin...">
+                </div>
+                <button class="btn" id="openLeadModal">+ New Lead</button>
+                <div class="notification-menu">
+                  <button class="icon-button notification-button" id="notificationBell" aria-label="Notifications" aria-expanded="false">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge-dot"></span>
+                  </button>
+                  <div class="notification-dropdown" id="notificationDropdown" hidden>
+                    <button type="button">New lead assigned: Jordan Lee</button>
+                    <button type="button">Campaign "Europe Blast" updated</button>
+                    <button type="button">2 follow-ups due today</button>
+                  </div>
+                </div>
+                <div class="profile-menu">
+              <button
+                class="profile-trigger"
+                id="profileToggle"
+                aria-expanded="false"
+              >
+                <div class="profile-avatar">AE</div>
+                <div>
+                  <strong>Amir E.</strong>
+                  <small>Project Manager</small>
+                </div>
+                <span>▾</span>
+              </button>
+              <div class="profile-dropdown" id="profileDropdown" hidden>
+                <button>Profile Settings</button>
+                <button>Team Activity</button>
+                <button>Sign Out</button>
+              </div>
+            </div>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <div class="main-column">
+                <section class="metrics-grid" aria-label="Dashboard metrics">
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <h2>New Travel Inqs</h2>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="metric-value">08</div>
+                        <div class="metric-subtext"><span class="trend up">▲ +12%</span> 4 from Europe this week</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <h2>Bookings Pipeline</h2>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="metric-value">$128K</div>
+                        <div class="metric-subtext"><span class="trend up">▲ +9%</span> Luxury itineraries leading</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <h2>Upcoming Trips</h2>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="metric-value">14</div>
+                        <div class="metric-subtext"><span class="trend up">▲ +3</span> 7 departures this week</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <h2>Leads from Europe</h2>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="metric-value">05</div>
+                        <div class="metric-subtext"><span class="trend up">▲ +18%</span> Paris and Rome campaigns</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <h2>Follow-ups Due</h2>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="metric-value">11</div>
+                        <div class="metric-subtext"><span class="trend down">▼ -2</span> 8 assigned to sales desk</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-top">
+                            <h2>Active Campaigns</h2>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="metric-value">06</div>
+                        <div class="metric-subtext"><span class="trend up">▲ +1</span> Summer Europe Blast launched</div>
+                    </div>
+                </section>
+
+                <div class="table-card">
+                  <div class="table-header">
+                    <h2>Live Follow-up Queue</h2>
+                    <button class="btn">View all</button>
+                  </div>
+                  <table id="activitiesTable">
+                    <thead>
+                      <tr>
+                        <th><button class="sort-button" data-table="activitiesTable" data-column="0">Activity</button></th>
+                        <th><button class="sort-button" data-table="activitiesTable" data-column="1">Lead Name</button></th>
+                        <th><button class="sort-button" data-table="activitiesTable" data-column="2">Date</button></th>
+                        <th><button class="sort-button" data-table="activitiesTable" data-column="3">Status</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Inquiry Call - Paris Spring Escape</td>
+                        <td>Sophia Bennett</td>
+                        <td>Mar 17, 2026</td>
+                        <td><span class="badge in-progress">In Progress</span></td>
+                      </tr>
+                      <tr>
+                        <td>Visa Checklist Review - Tokyo</td>
+                        <td>Jordan Lee</td>
+                        <td>Mar 17, 2026</td>
+                        <td><span class="badge started">Started</span></td>
+                      </tr>
+                      <tr>
+                        <td>Proposal Sent - Italy Honeymoon</td>
+                        <td>Camila Ruiz</td>
+                        <td>Mar 18, 2026</td>
+                        <td><span class="badge awaiting">Awaiting Reply</span></td>
+                      </tr>
+                       <tr>
+                        <td>Deposit Reminder - Bali Retreat</td>
+                        <td>Marcus Turner</td>
+                        <td>Mar 18, 2026</td>
+                        <td><span class="badge confirmed">Confirmed</span></td>
+                      </tr>
+                      <tr>
+                        <td>Family Package Quote - Dubai</td>
+                        <td>Nadia Hassan</td>
+                        <td>Mar 19, 2026</td>
+                        <td><span class="badge in-progress">In Progress</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-header">
+                        <h2>High-Priority Prospects</h2>
+                        <button class="btn">Pipeline view</button>
+                    </div>
+                  <table id="leadsTable">
+                    <thead>
+                      <tr>
+                        <th><button class="sort-button" data-table="leadsTable" data-column="0">Name</button></th>
+                        <th><button class="sort-button" data-table="leadsTable" data-column="1">Company</button></th>
+                        <th><button class="sort-button" data-table="leadsTable" data-column="2">Email</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Elena Petrova</strong> <span class="destination">Destination: Greek Islands</span></td>
+                        <td>EuroTrip Inc.</td>
+                        <td>elena@eurotripinc.com</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Tyler Morgan</strong> <span class="destination">Destination: Costa Rica</span></td>
+                        <td>Pacific Edge Media</td>
+                        <td>tyler@pacificedge.com</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Amina Yusuf</strong> <span class="destination">Destination: Marrakech</span></td>
+                        <td>Desert Bloom Co.</td>
+                        <td>amina@desertbloom.co</td>
+                      </tr>
+                      <tr>
+                        <td><strong>David Kim</strong> <span class="destination">Destination: Seoul</span></td>
+                        <td>Skyline Commerce</td>
+                        <td>david@skylinecommerce.com</td>
+                      </tr>
+                       <tr>
+                        <td><strong>Harper Scott</strong> <span class="destination">Destination: Swiss Alps</span></td>
+                        <td>NorthPeak Ventures</td>
+                        <td>harper@northpeak.io</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <div class="side-column">
+                <div class="card quick-entry">
+                    <div class="table-header">
+                        <h2>Travel Form</h2>
+                        <span class="validated-badge">Client-side validated</span>
+                    </div>
+                    <form id="travelForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" id="name" name="name" placeholder="Traveler name" required />
+                                <small class="field-error" data-error-for="name"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="email" name="email" placeholder="name@example.com" required />
+                                <small class="field-error" data-error-for="email"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" />
+                                <small class="field-error" data-error-for="phone"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>Destination</label>
+                                <input type="text" id="destination" name="destination" placeholder="Bali, Tokyo, Rome" required />
+                                <small class="field-error" data-error-for="destination"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" id="travelStartDate" name="travelStartDate" value="2026-03-29" required />
+                                <small class="field-error" data-error-for="travelStartDate"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" id="travelEndDate" name="travelEndDate" value="2026-03-29" required />
+                                <small class="field-error" data-error-for="travelEndDate"></small>
+                            </div>
+                        </div>
+                         <div class="form-row">
+                            <div class="form-group">
+                                <label>Travelers</label>
+                                <input type="number" id="numberOfTravelers" name="numberOfTravelers" value="2" min="1" max="20" required />
+                                <small class="field-error" data-error-for="numberOfTravelers"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>Budget</label>
+                                <input type="number" id="budget" name="budget" min="0" step="100" placeholder="12000" />
+                                <small class="field-error" data-error-for="budget"></small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Notes</label>
+                            <textarea id="notes" name="notes" placeholder="Preferences, hotels, excursions"></textarea>
+                            <small class="field-error" data-error-for="notes"></small>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn">Save Lead</button>
+                            <button type="reset" class="btn" id="resetLeadForm">Clear</button>
+                        </div>
+                         <p class="form-message" id="leadFormMessage" aria-live="polite"></p>
+                    </form>
+                </div>
+                <div class="card my-tasks">
+                    <div class="table-header">
+                        <h2>My Tasks</h2>
+                        <span class="pending-badge">6 pending</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="task-info">
+                                <p>Confirm Paris group flights</p>
+                                <span>09:30 AM - Booking Desk</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-info">
+                                <p>Send Dubai proposal revision</p>
+                                <span>11:00 AM - Deals</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-info">
+                                <p>Review Europe Summer Blast creative</p>
+                                <span>01:30 PM - Campaigns</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-info">
+                                <p>Call back honeymoon inquiry</p>
+                                <span>03:00 PM - Leads</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </main>
+    </div>
+    </div>
+
+    <div class="modal-backdrop" id="campaignModal" hidden>
+      <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="campaignModalTitle">
+        <div class="table-header">
+            <h2 id="campaignModalTitle">New Travel Campaign</h2>
+          <button class="icon-button" id="closeCampaignModal" aria-label="Close campaign modal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="campaignForm" class="campaign-form">
+            <div class="form-group">
+                <label>Campaign Name</label>
+                <input type="text" id="campaignName" placeholder="Summer Europe 2026" required />
+            </div>
+            <div class="form-group">
+                <label>Destinations</label>
+                <input type="text" id="campaignDestinations" placeholder="Paris, Rome, Barcelona" required />
+            </div>
+          <div class="form-row">
+            <div class="form-group">
+                <label>Budget Range</label>
+                <select id="campaignBudgetRange" required>
+                    <option value="">Select range</option>
+                    <option>$5K - $10K</option>
+                    <option>$10K - $25K</option>
+                    <option>$25K - $50K</option>
+                    <option>$50K+</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Launch Date</label>
+                <input type="date" id="campaignLaunchDate" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Owner</label>
+            <input type="text" id="campaignOwner" placeholder="Growth Team" required />
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn">Create Campaign</button>
+            <button type="button" class="btn" id="cancelCampaignModal">Cancel</button>
+          </div>
+          <p class="form-message" id="campaignMessage" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast" id="appToast" hidden></div>
+
+    <div class="tooltip" id="tooltip"></div>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
