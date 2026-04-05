@@ -1,9 +1,5 @@
 const form = document.getElementById("travelForm");
 const message = document.getElementById("message");
-const API_BASE_URL =
-window.API_BASE_URL ||
-"https://wws-crm-production.up.railway.app";
-const BACKEND_URL = `${API_BASE_URL.replace(/\/$/, "")}/api/travel-inquiry`;
 
 const fieldIds = [
 "name",
@@ -47,9 +43,16 @@ message.classList.remove("success", "error");
 if(type){
 message.classList.add(type);
 }
+if(type === "success"){
+message.style.color = "green";
+}else if(type === "error"){
+message.style.color = "red";
+}else{
+message.style.color = "";
+}
 }
 
-form.addEventListener("submit", async function(e){
+form.addEventListener("submit", function(e){
 
 e.preventDefault();
 
@@ -116,7 +119,7 @@ hasErrors = true;
 }
 
 if(hasErrors){
-setOverallMessage("Please fix the highlighted fields and try again.", "error");
+setOverallMessage("Travel Inquiry Failed Submission", "error");
 return;
 }
   
@@ -132,39 +135,9 @@ budget,
 notes
 };
 
-try{
-
-const response = await fetch(BACKEND_URL,{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body: JSON.stringify(data)
-});
-
-if(response.ok){
-
-setOverallMessage("Inquiry submitted successfully!", "success");
+console.log("Travel inquiry submitted locally:", data);
+setOverallMessage("Travel Inquiry Submitted Successfully", "success");
 form.reset();
 clearFieldErrors();
-
-}else{
-let errorText = "Server error. Please try again.";
-try{
-const body = await response.json();
-if(body && typeof body.error === "string" && body.error.trim()){
-errorText = body.error;
-}
-}catch(parseError){
-}
-setOverallMessage(errorText, "error");
-
-}
-
-}catch(error){
-
-setOverallMessage("Network error. Could not submit form.", "error");
-
-}
 
 });
